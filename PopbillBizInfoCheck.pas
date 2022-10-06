@@ -161,12 +161,12 @@ end;
 
 
 
-function TBizInfoCheckService.checkBizInfo(MemberCorpNum : String; CheckCorpNum : String; UserID : String = '') : TBizCheckInfo;
+function TBizInfoCheckService.CheckBizInfo(MemberCorpNum : String; CheckCorpNum : String; UserID : String = '') : TBizCheckInfo;
 var
         responseJson : string;
         url : string;
 begin
-        if Length(MemberCorpNum) = 0 then
+        if Length(CheckCorpNum) = 0 then
         begin
                 if FIsThrowException then
                 begin
