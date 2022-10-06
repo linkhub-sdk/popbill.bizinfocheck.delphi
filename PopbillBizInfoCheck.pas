@@ -62,7 +62,7 @@ type
         public
                 constructor Create(LinkID : String; SecretKey : String);
                 function GetUnitCost(CorpNum : String): Single;
-                function checkBizInfo(CorpNum : String; TargetCorpNum : String; UserID : String = '') : TBizCheckInfo;
+                function checkBizInfo(MemberCorpNum : String; CheckCorpNum : String; UserID : String = '') : TBizCheckInfo;
                 function GetChargeInfo(CorpNum : String) : TBizInfoCheckChargeInfo;
         end;
 
@@ -161,12 +161,12 @@ end;
 
 
 
-function TBizInfoCheckService.checkBizInfo(CorpNum : String; TargetCorpNum : String; UserID : String = '') : TBizCheckInfo;
+function TBizInfoCheckService.checkBizInfo(MemberCorpNum : String; CheckCorpNum : String; UserID : String = '') : TBizCheckInfo;
 var
         responseJson : string;
         url : string;
 begin
-        if Length(corpNum) = 0 then
+        if Length(MemberCorpNum) = 0 then
         begin
                 if FIsThrowException then
                 begin
@@ -182,10 +182,10 @@ begin
                 end;
         end;
 
-        url := '/BizInfo/Check?CN='+ TargetCorpNum;
+        url := '/BizInfo/Check?CN='+ CheckCorpNum;
 
         try
-                responseJson := httpget(url, CorpNum, UserID);
+                responseJson := httpget(url, MemberCorpNum, UserID);
 
         except
                 on le : EPopbillException do begin
